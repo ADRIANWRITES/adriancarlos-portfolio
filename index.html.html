@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrian Carlos | Filmmaker, Writer, Director</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(26, 82, 118, 0.8), rgba(26, 82, 118, 0.8)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            color: white;
+            padding-top: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            color: white;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .project-category {
+            color: var(--accent-color);
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        /* Resume Section */
+        .resume-container {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            background-color: white;
+            position: relative;
+        }
+        
+        .sidebar {
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        
+        .main-content {
+            padding: 30px;
+            position: relative;
+        }
+        
+        .main-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 8px;
+            background-color: var(--primary-color);
+        }
+        
+        .contact-info {
+            margin-bottom: 25px;
+        }
+        
+        .resume-section {
+            margin-bottom: 30px;
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+        
+        .resume-name {
+            font-size: 36px;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .resume-title {
+            font-size: 16px;
+            color: var(--secondary-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .resume-section h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+        
+        .resume-section h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin: 15px 0 10px 0;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .date {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .skills-list {
+            list-style-type: none;
+        }
+        
+        .skills-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .skills-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 22px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .job-bullets li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        
+        .job-bullets li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 22px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+        }
+        
+        .summary {
+            margin: 20px 0;
+            line-height: 1.7;
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .contact-info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            line-height: 40px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content::before {
+                display: none;
+            }
+            
+            .logo-circle {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Adrian<span>Carlos</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Adrian Carlos</h1>
+            <p>Filmmaker | Writer | Director</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="/api/placeholder/600/600" alt="Adrian Carlos">
+                </div>
+                <div class="about-text">
+                    <h3>Creating Stories That Matter</h3>
+                    <p>Creative filmmaker, screenwriter, and director experienced in guiding projects from concept through post-production. I combine sharp storytelling instincts with four years of high-pressure coordination at Cedars-Sinai Medical Center, which translates seamlessly to production management.</p>
+                    <p>I'm passionate about genre-blending stories that amplify marginalized voices and spark conversation. My background in both healthcare coordination and creative production gives me a unique perspective on managing teams and delivering compelling narratives.</p>
+                    <p>When I'm not behind the camera or writing, you might find me volunteering at the Outfest LGBTQ+ Film Festival or drawing on my experience as a former punk-band drummer to create rhythmic, dynamic edits.</p>
+                    <a href="#contact" class="btn">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Delulu Film">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Writer & Director</span>
+                        <h3>Short Film: Delulu (2024)</h3>
+                        <p>A contemporary short film exploring themes of reality and perception in the digital age.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Nightmare Road">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Writer</span>
+                        <h3>Short Film: Nightmare Road (2023)</h3>
+                        <p>A psychological-horror screenplay that delves into the dark corners of the human psyche.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Get Out Rework">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Director</span>
+                        <h3>Scene Rework: Get Out (2023)</h3>
+                        <p>A reinterpretation of a pivotal scene from Jordan Peele's groundbreaking film.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Ash vs Evil Dead Spec">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Writer</span>
+                        <h3>Spec Script: Ash vs Evil Dead (2025)</h3>
+                        <p>A half-hour horror-comedy spec script titled "Drinks with Discreetpapi" praised for authentic voice and genre balance.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <div class="container">
+            <div class="section-title">
+                <h2>Resume</h2>
+            </div>
+            <div class="resume-container">
+                <div class="sidebar">
+                    <div class="contact-info">
+                        <p>Los Angeles, CA</p>
+                        <p>86acarlos@gmail.com</p>
+                        <p>626-430-8091</p>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Skills</h2>
+                        <ul class="skills-list">
+                            <li>Production Leadership & Team Management</li>
+                            <li>Script Writing & Editing</li>
+                            <li>Storyboarding & Visual Planning</li>
+                            <li>Video Editing (Premiere Pro / DaVinci Resolve)</li>
+                            <li>Budget Tracking & Resource Allocation</li>
+                            <li>Troubleshooting & Technical Solutions</li>
+                            <li>Bilingual (English / Spanish)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Links</h2>
+                        <ul class="skills-list">
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Additional Information</h2>
+                        <ul class="skills-list">
+                            <li>Former punk-band drummer—strong rhythmic sense for editing</li>
+                            <li>Volunteer, Outfest LGBTQ+ Film Festival</li>
+                            <li>Member (ally), Women in Film & Television</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="main-content">
+                    <div class="resume-header">
+                        <div class="resume-name">Adrian Carlos</div>
+                        <div class="resume-title">Filmmaker • Writer • Director</div>
+                    </div>
+                    
+                    <div class="logo-circle">AC</div>
+                    
+                    <div class="resume-section">
+                        <h2>Professional Summary</h2>
+                        <p class="summary">Creative filmmaker, screenwriter, and director experienced in guiding projects from concept through post-production. Combines sharp storytelling instincts with four years of high-pressure coordination at Cedars-Sinai Medical Center, translating seamlessly to production management. Adept at leading cross-functional teams, crafting compelling narratives, and delivering on-time, on-budget results. Passionate about genre-blending stories that amplify marginalized voices and spark conversation.</p>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Employment History</h2>
+                        
+                        <div>
+                            <div class="date">SEP 2021 - PRESENT</div>
+                            <h3 class="job-title">Administrative Specialist, Cedars-Sinai Medical Center</h3>
+                            <ul class="job-bullets">
+                                <li>Central coordinator in a 24/7 imaging department, triaging up to 120 priority requests per shift—experience directly applicable to production office traffic.</li>
+                                <li>Streamlined cross-department communication, cutting report turnaround time by 30%.</li>
+                                <li>Generated daily status reports and dashboards akin to production progress sheets.</li>
+                                <li>Led scheduling and staffing for a 20-person team—mirrors call-sheet creation.</li>
+                                <li>Troubleshot imaging systems comparable to on-set tech troubleshooting.</li>
+                                <li>Maintained compliance and safety protocols similar to standard set guidelines.</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 25px;">
+                            <div class="date">2020 - 2022</div>
+                            <h3 class="job-title">Production Assistant, Freelance Projects</h3>
+                            <ul class="job-bullets">
+                                <li>Supported on-set operations, equipment setup, and continuity tracking for short-form shoots.</li>
+                                <li>Assisted directors and cinematographers in executing shot lists and staying on schedule.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Notable Projects</h2>
+                        
+                        <div>
+                            <h3>Short Film: Delulu (Writer & Director, 2024)</h3>
+                            <ul class="job-bullets">
+                                <li>Oversaw all stages from script through festival submission; managed $5K budget, casting, scheduling, and post-production.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3>Short Film: Nightmare Road (Writer, 2023)</h3>
+                            <ul class="job-bullets">
+                                <li>Penned psychological-horror screenplay; collaborated with director on visual and tonal approach.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3>Scene Rework: Get Out (Director, 2023)</h3>
+                            <ul class="job-bullets">
+                                <li>Helmed reinterpretation of Jordan Peele scene; delivered shot lists, storyboards, and overhead diagrams.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3>Spec Script: Ash vs Evil Dead "Drinks with Discreetpapi" (Writer, 2025)</h3>
+                            <ul class="job-bullets">
+                                <li>Created half-hour horror-comedy spec praised for authentic voice, pacing, and genre balance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h2>Education</h2>
+                        
+                        <div>
+                            <div class="date">Expected 2025</div>
+                            <h3>BA: Television, Film & Media Production</h3>
+                            <p>California State University, Los Angeles | Dean's List</p>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <div class="date">2022</div>
+                            <h3>AA: Film, Television & Electronic Media</h3>
+                            <p>Mount San Antonio College, Walnut, CA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-info-box">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <p>Los Angeles, CA</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <p>86acarlos@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <p>626-430-8091</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">▶️</a>
+                <a href="#">🎬</a>
+                <a href="#">💼</a>
+                <a href="#">🔗</a>
+            </div>
+            <p class="copyright">© 2025 Adrian Carlos. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
